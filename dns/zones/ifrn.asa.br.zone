@@ -1,0 +1,17 @@
+$TTL 86400
+@   IN  SOA ns1.ifrn.asa.br. admin.ifrn.asa.br. (
+        2023081501 ; Serial
+        3600       ; Refresh
+        1800       ; Retry
+        1209600    ; Expire
+        86400 )    ; Minimum TTL
+
+@       IN  NS      ns1.ifrn.asa.br.
+@       IN  A       192.168.56.1
+ns1     IN  A       192.168.56.1
+mail    IN  A       192.168.56.1
+x       IN  A       192.168.56.1
+
+mail    IN  MX 10   mail.ifrn.asa.br.
+
+x       IN  CNAME   ifrn.asa.br.

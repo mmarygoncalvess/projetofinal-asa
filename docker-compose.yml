@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+  bind:
+    image: internetsystemsconsortium/bind9:9.18
+    volumes:
+      - ./dns/named.conf:/etc/bind/named.conf
+      - ./dns/zones:/etc/bind/zones
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+
+  postfix:
+    build: ./mail/postfix
+    ports:
+      - "25:25"
+      - "587:587"
+
+  dovecot:
+    build: ./mail/dovecot
+    ports:
+      - "143:143"
+      - "993:993"
+      
+  webmail:
+    build: ./mail/webmail
+    ports:
+      - "8080:80"
+
+  nginx:
+    build: ./web/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+
+  wordpress:
+    build: ./web/wordpress
+    environment:
+      - WORDPRESS_DB_HOST=192.168.56.1
+      - WORDPRESS_DB_USER=user
+      - WORDPRESS_DB_PASSWORD=password
+      - WORDPRESS_DB_NAME=wordpress
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
+  db:
+    build: ./db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/mysql
+
+  ssh:
+    build: ./ssh
+    ports:
+      - "22:22"
+
+volumes:
+  db_data: {}

@@ -1,0 +1,7 @@
+# Configuração básica do Postfix
+myhostname = mail.ifrn.asa.br
+mydomain = ifrn.asa.br
+myorigin = $mydomain
+inet_interfaces = all
+mydestination = $myhostname, localhost.$mydomain, localhost
+relay_domains =
