@@ -1,7 +1,7 @@
 # projetofinal-asa
 Projeto Final | ASA (Dockerfile)
 
-Com base na estrutura que você forneceu, aqui está uma análise detalhada do que provavelmente já foi configurado em cada serviço do projeto:
+Configuração em cada serviço do projeto:
 
 ## 1. DNS (Pasta dns)
 Arquivos: Dockerfile, ifrn.asa.br.zone, x.ifrn.asa.br.zone, named.conf.
